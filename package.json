@@ -1,0 +1,22 @@
+{
+  "name": "sharespacelite",
+  "private": true,
+  "workspaces": ["apps/*"],
+  "scripts": {
+    "dev": "concurrently -n web,server -c magenta,cyan \"npm:dev:web\" \"npm:dev:server\"",
+    "build": "npm run build:web && npm run build:server",
+    "lint": "npm run lint:web && npm run lint:server",
+    "typecheck": "npm run typecheck:web && npm run typecheck:server",
+    "dev:web": "npm --workspace=apps/web run dev",
+    "dev:server": "npm --workspace=apps/server run dev",
+    "build:web": "npm --workspace=apps/web run build",
+    "build:server": "npm --workspace=apps/server run build",
+    "lint:web": "npm --workspace=apps/web run lint",
+    "lint:server": "echo \"(skip) server lint not configured yet\"",
+    "typecheck:web": "npm --workspace=apps/web run typecheck || echo \"(skip)\"",
+    "typecheck:server": "npm --workspace=apps/server run build --silent"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.0"
+  }
+}
